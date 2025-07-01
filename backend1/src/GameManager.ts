@@ -1,5 +1,7 @@
 import WebSocket from "ws";
 import { Game } from "./Game";
+import { INIT_GAME, MOVE, GAME_OVER } from "./messages";
+
 
 export class GameManager{
     private games : Game[];
@@ -29,7 +31,7 @@ export class GameManager{
         socket.on("message", (data) => {
             const message = JSON.parse(data.toString());
         
-            if (message.type === "INIT_GAME") {
+            if (message.type === INIT_GAME) {
                 if (this.pendingUser){
                     //start the game 
                     const game = new Game(this.pendingUser, socket);
@@ -39,11 +41,13 @@ export class GameManager{
                 }else{
                     this.pendingUser = socket;
                     }
-                }
             }
-            if (message.type === MOVE){
-            
-        }
-        
+            if (message.type === MOVE) {
+                const game = this.games.find(game => game.player1 === socket || game.player2 === socket);
+                if (game){
+                    game.makeMove(socket, message.move);
+                }
+            } 
+        });
     }
 }
