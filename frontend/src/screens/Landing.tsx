@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Button } from "../components/Button";
 
 export const Landing = () => {
     const navigate = useNavigate();
@@ -13,7 +14,10 @@ export const Landing = () => {
                     <h1 className="text-4xl font-bold text-white">Welcome to Chess</h1>
                     </div>
                     <div className="flex justify-center">
-                
+                    <Button onClick ={() => 
+                    {navigate("/game")}}>
+                     Start Playing
+                    </Button>
                     </div>
                 </div>
             </div>

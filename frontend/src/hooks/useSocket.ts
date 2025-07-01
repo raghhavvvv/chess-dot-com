@@ -21,9 +21,6 @@ export const useSocket  = () => {
         newSocket.onerror = (error) => {
             console.error("WebSocket error:", error);
         };
-
-        setSocket(newSocket);
-
         return () => {
             newSocket.close();
         };
