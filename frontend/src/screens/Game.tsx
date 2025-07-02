@@ -11,6 +11,7 @@ export const GAME_OVER = "game_over";
 export const Game = () => {
     const socket = useSocket();
     const [board, setBoard] = useState(chess.board());
+    const [chess] = useState(new Chess());
     const [started, setStarted] = useState(false);
     const [color, setColor] = useState<"white" | "black" | null>(null);
 
