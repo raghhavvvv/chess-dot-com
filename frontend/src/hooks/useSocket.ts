@@ -17,14 +17,10 @@ export const useSocket  = () => {
         newSocket.onclose = () => {
             setSocket(null);
             };
-
-        newSocket.onerror = (error) => {
-            console.error("WebSocket error:", error);
-        };
         return () => {
             newSocket.close();
         };
     }, []);
 
     return socket;
-}
+} 
